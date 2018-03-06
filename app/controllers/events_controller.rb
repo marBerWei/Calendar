@@ -16,15 +16,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-	# check for existing events
-	# maybe there is a way to do that with validation
 	if @event.valid?
       	@event.save
-      	flash[:notice] = 'Event was successfully created.'
+      	# add a flash notice eventually
       	redirect_to events_path
     else
+    	# add a flash notice eventually
         redirect_to new_event_path
-        flash[:notice] = 'Event could not be saved at the time.'
     end
   end
 
