@@ -3,8 +3,19 @@ html
   head
     title My Calendar
     meta name="keywords" content="template language"
-    
+
 		body 
+		 	- start_date = params.fetch(:start_date, Date.today).to_date
+			- date_range = (start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).to_a
+			
+			
+			p
+				= link_to "Last Month", start_date: date_range.first - 1.day
+			p
+				= link_to "Next Month", start_date: date_range.last + 1.day
+			p
+				= link_to "This Month", start_date: date_range.first.day
+
 	    h1 My Events
 
 	    table
@@ -14,12 +25,20 @@ html
 		  			th = weekday
 
 				tbody
-					- @date_range.each_slice(7) do |week|
+					- date_range.each_slice(7) do |week|
 						tr 
 						  - week.each do | day |
 							td 
 								= day
-	        	
+	    
+	    = link_to 'Create a new Event', new_event_path
+
+	    ul
+	    - @events.each do |event|
+	    	li
+	    	= event.name  
+	    	li
+	    	= event.time_start 
 
 
 
