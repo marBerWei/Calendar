@@ -10,10 +10,6 @@ class EventsController < ApplicationController
   # def show
   #   @event = Event.find(params[:id])
   # end
-  def edit
-  	@event = Event.find(params[:id])
-  end
-
   def new
     @event = Event.new
   end
@@ -28,24 +24,27 @@ class EventsController < ApplicationController
       	redirect_to events_path
     else
         redirect_to new_event_path
+        flash[:notice] = 'Event could not be saved at the time.'
     end
   end
 
+  def edit
+  	@event = Event.find(params[:id])
+  end
+
+
   def update
-    respond_to do |format|
-      @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-    end
+  	@event = Event.find(params[:id])
+  	@event.update(event_params)
+  	flash[:notice] = 'Event was successfully updated.'
+  	redirect_to events_path
   end
 
   def destroy
   	@event = Event.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Event was successfully destroyed.'
+    redirect_to events_path
   end
 
   private
