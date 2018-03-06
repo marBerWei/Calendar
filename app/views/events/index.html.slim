@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title My Calendar
+    meta name="keywords" content="template language"
+    
+		body 
+	    h1 My Events
+
+	    table
+	    	thead
+	    		tr
+	    		- @weekdays.each do |weekday|
+		  			th = weekday
+
+				tbody
+					- @date_range.each_slice(7) do |week|
+						tr 
+						  - week.each do | day |
+							td 
+								= day
+	        	
+
+
+
+					
