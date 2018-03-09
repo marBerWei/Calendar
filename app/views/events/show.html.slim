@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+  body
+  	= link_to 'Back to Calendar', events_path
+    h1 Event: #{@event.name}
+    h2 #{@event.time_start.strftime("%A, %b %d %l:%M %p")} - #{@event.time_end.strftime("%A, %b %d %l:%M %p")}
+    = link_to 'Edit Event', edit_event_path(@event)
+    = link_to 'Delete Event', event_path(@event),  method: :delete, remote: true
+    

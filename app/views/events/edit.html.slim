@@ -1,2 +1,13 @@
-h1 Event#edit
-p Find me in app/views/event/edit.html.slim
+
+html
+  head
+  body
+  p
+  = form_for @event, method: :patch do |f|
+      = f.label :event_name
+      = f.text_field :name
+      = f.label :event_time_start
+      = f.datetime_select(:time_start, :include_seconds => true)
+      = f.label :event_time_end
+      = f.datetime_select(:time_end, :include_seconds => true)
+      = f.submit

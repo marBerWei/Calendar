@@ -28,17 +28,23 @@ html
 					- date_range.each_slice(7) do |week|
 						tr 
 						  - week.each do | day |
-							td 
-								= day
+
+								- day_events = @events.collect do |ev| 
+									- puts day
+									- ev.time_start.to_s.slice(0,10) == day
+
+								td = day_events
+						
+								
+							
+									
+									
 	    
 	    = link_to 'Create a new Event', new_event_path
 
-	    ul
+	   
 	    - @events.each do |event|
-	    	li
-	    	= event.name  
-	    	li
-	    	= event.time_start 
+	    	= link_to event.name, event_path(event)
 
 
 

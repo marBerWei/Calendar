@@ -4,14 +4,10 @@ html
   body
   p
   = form_for @event, method: :post do |f|
-  	  p
-      = f.label :name
+      = f.label :event_name
       = f.text_field :name
-      p
-      = f.label :time_start
-      = f.datetime_select :time_start, :ampm => true, :minute_step => 15
-      p
-      = f.label :time_end
-      = f.datetime_select :time_end, :ampm => true, :minute_step => 15
-      p
+      = f.label :event_time_start
+      = f.datetime_select(:time_start, :include_seconds => true)
+      = f.label :event_time_end
+      = f.datetime_select(:time_end, :include_seconds => true)
       = f.submit
